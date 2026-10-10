@@ -1,86 +1,43 @@
-Laravel UK KYB \& Address Sanitizer Edge Package
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/jamesforsyth/laravel-uk-kyb-edge.svg?style=flat-square)](https://packagist.org/packages/jamesforsyth/laravel-uk-kyb-edge)
+[![Total Downloads](https://img.shields.io/packagist/dt/jamesforsyth/laravel-uk-kyb-edge.svg?style=flat-square)](https://packagist.org/packages/jamesforsyth/laravel-uk-kyb-edge)
+[![License](https://img.shields.io/packagist/l/jamesforsyth/laravel-uk-kyb-edge.svg?style=flat-square)](LICENSE.md)
 
-
+# Laravel UK KYB & Address Sanitizer Edge Package
 
 Sub-20ms edge proxy wrapper for UK Companies House data, address sanitization, GPS geocoding, and director KYB.
 
-
-
-
-
-INSTALLATION
-
-
+## Installation
 
 Install via Composer:
 
-
-
+```bash
 composer require jamesforsyth/laravel-uk-kyb-edge
+```
 
+## Usage
 
+### 1. Lookup & Sanitize Company Data
 
-
-
-USAGE
-
-
-
-1\. Lookup \& Sanitize Company Data
-
-
-
-use JamesForsyth\\UKBusiness\\Facades\\UKBusiness;
-
-
+```php
+use JamesForsyth\UKBusiness\Facades\UKBusiness;
 
 // Basic Lookup
-
 $company = UKBusiness::lookup('00000000');
 
-
-
 // Access address and GPS
+$address =$company['data']['registered_address'];
+$latitude =$address['latitude'];
+$longitude =$address['longitude'];
+```
 
-$address = $company\['data']\['registered\_address'];
+### 2. Search & Sanitize
 
-$latitude = $address\['latitude'];
-
-$longitude = $address\['longitude'];
-
-
-
-
-
-2\. Search \& Sanitize
-
-
-
+```php
 $result = UKBusiness::sanitize('Monzo Bank');
+```
 
+### 3. Fetch Director KYB Data
 
-
-
-
-3\. Fetch Director KYB Data
-
-
-
+```php
 $officers = UKBusiness::officers('00000000');
-
-$directors = $officers\['directors\_and\_officers']\['active'];
-
-
-
-
-
-TESTING AND SANDBOX MODE
-
-
-
-You can test with company number '00000000' or 'SANDBOX' for instant mock responses without hitting live registry limits.
-
-
-
-
-
+```
