@@ -1,0 +1,33 @@
+{
+    "name": "jamesforsyth/laravel-uk-kyb-edge",
+    "description": "Sub-20ms UK Companies House address sanitization, geocoding, and director KYB for Laravel.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Forsyth",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.0|^10.0|^11.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JamesForsyth\\UKBusiness\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JamesForsyth\\UKBusiness\\UKBusinessServiceProvider"
+            ],
+            "aliases": {
+                "UKBusiness": "JamesForsyth\\UKBusiness\\Facades\\UKBusiness"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}
