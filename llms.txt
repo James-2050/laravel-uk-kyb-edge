@@ -1,13 +1,17 @@
 # laravel-uk-kyb-edge
 
-> Sub-20ms UK Companies House proxy, address sanitizer, geocoder, and director KYB package for Laravel.
+> Sub-20ms UK Companies House proxy, address sanitizer, geocoder, director KYB, and automated financial vision extraction package for Laravel.
 
 ## Package Info
+
 - **Composer Package:** jamesforsyth/laravel-uk-kyb-edge
 - **Supported Versions:** Laravel 9.x, 10.x, 11.x, 12.x
 - **Facade:** JamesForsyth\UKBusiness\Facades\UKBusiness
 
 ## API Methods
+
 - `UKBusiness::lookup(string $companyNumber)`: Returns normalized profile, status, and lat/long coordinates.
 - `UKBusiness::sanitize(string $query)`: Cleans address strings to Title Case and appends geolocation.
 - `UKBusiness::officers(string $companyNumber)`: Returns structured collection of active/resigned directors.
+- `UKBusiness::financials(string $documentId)`: Extracts unstructured balance sheet metrics from filing PDFs into JSON via Vision Models.
+- `UKBusiness::document(string $documentId)`: High-speed proxy stream of official filing PDFs with full CORS headers enabled.
