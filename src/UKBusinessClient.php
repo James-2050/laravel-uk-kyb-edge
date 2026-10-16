@@ -14,8 +14,8 @@ class UKBusinessClient
         $this->baseUrl = $baseUrl ?? 'https://uk-business-sanitizer.jamesforsyth1829.workers.dev';
         $this->client = new Client([
             'base_uri' => $this->baseUrl,
-            'timeout'  => 10.0,
-            'headers'  => [
+            'timeout' => 10.0,
+            'headers' => [
                 'Accept' => 'application/json',
             ],
         ]);
@@ -55,5 +55,29 @@ class UKBusinessClient
         ]);
 
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * Extract balance sheet financials from filing PDF via Vision Model.
+     */
+    public function financials(string $documentId): array
+    {
+        $response = $this->client->get('/financials', [
+            'query' => ['document_id' => $documentId]
+        ]);
+
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * Proxy stream filing PDF document.
+     */
+    public function document(string $documentId): string
+    {
+        $response = $this->client->get('/document', [
+            'query' => ['document_id' => $documentId]
+        ]);
+
+        return $response->getBody()->getContents();
     }
 }
